@@ -131,9 +131,7 @@ abstract class AbstractRelationship
         array $defaultRelationships,
         array $additionalMeta = []
     ): ?array {
-        $relationship = [
-            "data" => null,
-        ];
+        $relationship = [];
         
         if ((
                 $transformation->fetchedRelationship === $relationshipName &&
@@ -167,6 +165,11 @@ abstract class AbstractRelationship
             if ($transformedData !== false) {
                 $relationship["data"] = $transformedData;
             }
+        }
+        if ($relationship === []) {
+            $relationship = [
+                "data" => null,
+            ];
         }
 
         return $relationship;
